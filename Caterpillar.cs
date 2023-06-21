@@ -15,19 +15,13 @@ namespace Assignment_5_mono
         moving,
         transform
     }
-    internal class Caterpillar
+    internal class Caterpillar: Master_Class
     {
-        //Caterpillar Texture
-        protected Texture2D _sprite;
-
-        //position x, y and movement speed
-        protected int _positionX, _positionY, _movementSpeed;
-
         //flip sprite when required
         private SpriteEffects _flipLeft;
 
         //atrributes:-
-        //key input
+        
         //lifespan bar to make on top
 
         public Caterpillar(int positionX, int positionY,int caterpillarSpeed, Texture2D caterpillarSprite)
@@ -38,6 +32,7 @@ namespace Assignment_5_mono
             _sprite = caterpillarSprite;
         }
 
+        //key input
         public void Update()
         {
             if(Keyboard.GetState().IsKeyDown(Keys.W))
@@ -60,11 +55,6 @@ namespace Assignment_5_mono
                 _positionX -= 5;
             }
         }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
-            spriteBatch.Draw(_sprite, new Vector2(_positionX, _positionY), Color.White);
-            spriteBatch.End();
-        }
+        
     }
 }
