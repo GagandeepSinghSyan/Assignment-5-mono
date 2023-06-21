@@ -1,10 +1,11 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Assignment_5_mono
 {
@@ -20,7 +21,7 @@ namespace Assignment_5_mono
         private Texture2D _sprite;
 
         //position x, y and movement speed
-        private int _positionX, _positionY, _movementSpeed;
+        protected int _positionX, _positionY, _movementSpeed;
 
         //flip sprite when required
         private SpriteEffects _flipLeft;
@@ -58,14 +59,12 @@ namespace Assignment_5_mono
             {
                 _positionX -= 5;
             }
-            void Draw(SpriteBatch spriteBatch)
-            {
-               
-
-            }
-
-
         }
-
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
+            spriteBatch.Draw(_sprite, new Vector2(_positionX, _positionY), Color.White);
+            spriteBatch.End();
+        }
     }
 }
