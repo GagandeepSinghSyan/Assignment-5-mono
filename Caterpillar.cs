@@ -18,7 +18,7 @@ namespace Assignment_5_mono
     internal class Caterpillar
     {
         //Caterpillar Texture
-        private Texture2D _sprite;
+        protected Texture2D _sprite;
 
         //position x, y and movement speed
         protected int _positionX, _positionY, _movementSpeed;
