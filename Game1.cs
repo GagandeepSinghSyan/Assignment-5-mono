@@ -8,7 +8,7 @@ namespace Assignment_5_mono
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
+        //ebraahim
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
