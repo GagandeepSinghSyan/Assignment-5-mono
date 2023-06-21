@@ -41,8 +41,30 @@ namespace Assignment_5_mono
         {
             if(Keyboard.GetState().IsKeyDown(Keys.W))
             {
+                _positionY += 5;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                _positionY -= 5;
+            }
+            
+            if(Keyboard.GetState().IsKeyDown(Keys.D))
+            {
                 _positionX += 5;
             }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                _positionX -= 5;
+            }
+            void Draw(SpriteBatch spriteBatch)
+            {
+               
+
+            }
+
+
         }
 
     }
