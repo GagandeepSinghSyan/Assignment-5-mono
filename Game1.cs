@@ -11,6 +11,7 @@ namespace Assignment_5_mono
 
         //caterpillar variable
         private Caterpillar _caterpillar;
+        private int CatterpillarX= 0, CatterpillarY= 0;
 
         //caterpillar tecture
         private Texture2D _caterpillarSprite;
@@ -21,6 +22,9 @@ namespace Assignment_5_mono
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _graphics.PreferredBackBufferWidth = 1920;
+            _graphics.PreferredBackBufferHeight = 1080;
+            _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
@@ -35,7 +39,7 @@ namespace Assignment_5_mono
             
             _caterpillarSprite = Content.Load<Texture2D>("Caterpillar");
 
-            _caterpillar = new Caterpillar(50, 50, 5, _caterpillarSprite);
+            _caterpillar = new Caterpillar(CatterpillarX, CatterpillarY, 5, _caterpillarSprite);
         }
 
         protected override void Update(GameTime gameTime)
@@ -44,6 +48,9 @@ namespace Assignment_5_mono
                 Exit();
 
             _caterpillar.Update();
+            _caterpillar.GetPostionX(CatterpillarX);
+            _caterpillar.GetPostionY(CatterpillarY);
+            
 
             base.Update(gameTime);
         }

@@ -30,7 +30,7 @@ namespace Assignment_5_mono
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
-            spriteBatch.Draw(_sprite, new Vector2(_positionX, _positionY), Color.White);
+            spriteBatch.Draw(_sprite, new Vector2(_positionX, _positionY),null, Color.White, 1.55f, new Vector2(_sprite.Width/2f,_sprite.Height/2f), 0.2f,SpriteEffects.None,0);
             spriteBatch.End();
         }
 
@@ -64,6 +64,17 @@ namespace Assignment_5_mono
             {
                 _positionX -= 5;
             }
+        }
+
+        public int GetPostionX(int position) 
+        {
+         position= _positionX; 
+         return position;
+        }
+        public int GetPostionY(int position) 
+        {
+            position = _positionY;
+            return position;
         }
     }
 }
