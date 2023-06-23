@@ -11,6 +11,8 @@ namespace Assignment_5_mono
 {
     internal class Tree : Master_Class
     {
+
+        private Texture2D _tree; 
         public Tree(int x, int y, int killtime, Texture2D tree)
         {
             _positionX = x;

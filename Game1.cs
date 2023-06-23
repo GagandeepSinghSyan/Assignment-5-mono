@@ -11,7 +11,7 @@ namespace Assignment_5_mono
 
         public Game1()
         {
-            Texture2D[] Flowers = new Texture2D[]
+            Texture2D[] Flowers = new Texture2D[4];
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
