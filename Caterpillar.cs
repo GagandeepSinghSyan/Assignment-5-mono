@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Assignment_5_mono
 {
+
     enum CaterPillarState
     {
         idle,
@@ -21,8 +22,18 @@ namespace Assignment_5_mono
         private SpriteEffects _flipLeft;
 
         //atrributes:-
-        
+
         //lifespan bar to make on top
+        protected Texture2D _sprite;
+
+        //position x, y and movement speed
+        protected int _positionX, _positionY, _movementSpeed, _killtime;
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
+            spriteBatch.Draw(_sprite, new Vector2(_positionX, _positionY), Color.White);
+            spriteBatch.End();
+        }
 
         public Caterpillar(int positionX, int positionY,int caterpillarSpeed, Texture2D caterpillarSprite)
         {

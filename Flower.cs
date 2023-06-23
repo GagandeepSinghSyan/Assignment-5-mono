@@ -14,13 +14,10 @@ namespace Assignment_5_mono
 
         private int FlowerX, FlowerY;
         private int _killtime;
-        private Random _rng;
-        private float _scale;
         private Color _color;
         private Texture2D _flower;
         private Random rng;
         private int _timer = 60;
-
 
 
         public Flower(int x, int y, int killtime, Texture2D flower)

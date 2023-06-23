@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Assignment_5_mono
 {
-    internal class Tree : Master_Class
+    internal class Tree : Caterpillar
     {
 
         private Texture2D _tree; 
