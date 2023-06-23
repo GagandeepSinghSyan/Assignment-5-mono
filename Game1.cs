@@ -16,6 +16,10 @@ namespace Assignment_5_mono
 
     public class Game1 : Game
     {
+        //resolution for window
+        private int _windowWidth = 1920;
+        private int _windowHeight = 1080;
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -31,12 +35,16 @@ namespace Assignment_5_mono
 
         public Game1()
         {
+            //flower array
             Texture2D[] Flowers = new Texture2D[4];
+
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            _graphics.PreferredBackBufferWidth = 1920;
-            _graphics.PreferredBackBufferHeight = 1080;
+
+            //change window size
+            _graphics.PreferredBackBufferWidth = _windowWidth;
+            _graphics.PreferredBackBufferHeight = _windowHeight;
             _graphics.ApplyChanges();
         }
 
@@ -50,8 +58,9 @@ namespace Assignment_5_mono
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             
+            //load caterpilar texture
             _caterpillarSprite = Content.Load<Texture2D>("Caterpillar");
-
+            //initialize values for caterpillar
             _caterpillar = new Caterpillar(CatterpillarX, CatterpillarY, 5, _caterpillarSprite);
         }
 
@@ -78,32 +87,41 @@ namespace Assignment_5_mono
             _caterpillar.Update();
             _caterpillar.GetPostionX(CatterpillarX);
             _caterpillar.GetPostionY(CatterpillarY);
-            
+
+            if (Keyboard.GetState().IsKeyDown(Keys.L))
+            {
+                _state = GameState.TitleScreen;
+                Console.WriteLine("Changed to TitleScreen");
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.M))
+            {
+                _state = GameState.EndScreen;
+                Console.WriteLine("Changed to EndScren");
+
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.N))
+            {
+                _state = GameState.MainScreen;
+                Console.WriteLine("Changed to MainScreen");
+
+            }
 
             base.Update(gameTime);
         }
 
         void UpdateTitleScreen(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.L))
-            {
-                _state = GameState.TitleScreen;
-            }
+            
         }
         void UpdateMainScreen(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.NumPad1))
-            {
-                _state = GameState.MainScreen;
-            }
+            
         }
-
-            void UpdateEndScreen(GameTime gameTime)
+        void UpdateEndScreen(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.NumPad2))
-            {
-                _state = GameState.EndScreen;
-            }
+            
         }
 
         protected override void Draw(GameTime gameTime)

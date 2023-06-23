@@ -19,12 +19,11 @@ namespace Assignment_5_mono
     internal class Caterpillar: Master
     {
         //flip sprite when required
-        private SpriteEffects _flipLeft;
+        //private SpriteEffects _flipLeft;
 
         //atrributes:-
 
         //lifespan bar to make on top
-        protected Texture2D _sprite;
 
         float _rotation = 1.55f;
         //position x, y and movement speed
