@@ -126,7 +126,7 @@ namespace Assignment_5_mono
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Green);
 
             _caterpillar.Draw(_spriteBatch);
 
