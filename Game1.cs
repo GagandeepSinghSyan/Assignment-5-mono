@@ -1,9 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 
 namespace Assignment_5_mono
 {
+    enum GameState
+    {
+        TitleScreen,
+        MainScreen,
+        EndScreen,
+    }
+
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
@@ -15,6 +25,9 @@ namespace Assignment_5_mono
 
         //caterpillar tecture
         private Texture2D _caterpillarSprite;
+
+        //declaration of screen state
+        GameState _state;
 
         public Game1()
         {
@@ -55,13 +68,66 @@ namespace Assignment_5_mono
             base.Update(gameTime);
         }
 
+        void UpdateTitleScreen(GameTime deltatime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.NumPad0))
+            {
+                _state = GameState.TitleScreen;
+            }
+        }
+        void UpdateMainScreen(GameTime deltatime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.NumPad1))
+            {
+                _state = GameState.TitleScreen;
+            }
+        }
+
+            void UpdateEndScreen(GameTime deltatime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.NumPad2))
+            {
+                _state = GameState.TitleScreen;
+            }
+        }
+
         protected override void Draw(GameTime gameTime)
         {
+
+            //handle different screens
+            base.Update(gameTime);
+            switch (_state)
+            {
+                case GameState.TitleScreen:
+                    UpdateTitleScreen(deltatime);
+                    break;
+                case GameState.MainScreen:
+                    UpdateMainScreen(deltatime);
+                    break;
+                case GameState.EndScreen:
+                    UpdateEndScreen(deltatime);
+                    break;
+            }
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _caterpillar.Draw(_spriteBatch);
 
             base.Draw(gameTime);
+        }
+
+        void DrawTitleScreen(GameTime deltatime)
+        {
+
+        }
+
+        void DrawMainScreen(GameTime deltatime)
+        {
+
+        }
+
+        void DrawEndScfreen(GameTime deltatime)
+        {
+
         }
     }
 }
