@@ -12,20 +12,19 @@ namespace Assignment_5_mono
     internal class Flower : Master
     {
 
-        private int FlowerX, FlowerY;
-        private int _killtime;
+        private int _flowerX, _flowerY, _flowerKilltime;
         private Color _color;
-        private Texture2D _flower;
+        private Texture2D _flowerSprite;
         private Random rng;
         private int _timer = 60;
 
 
-        public Flower(int x, int y, int killtime, Texture2D flower)
+        public Flower(int flowerX, int flowerY, int flowerKilltime, Texture2D flowerSprite)
         {
-            _positionX = x;
-            _positionY = y;
-            _killtime = killtime;
-            _flower = flower;
+            _flowerX = flowerX;
+            _flowerY = flowerY;
+            _flowerKilltime = flowerKilltime;
+            _flowerSprite = flowerSprite;
             rng = new Random();
             _color = new Color(rng.Next(0, 256), rng.Next(0, 256), rng.Next(0, 256));
         }
@@ -48,7 +47,7 @@ namespace Assignment_5_mono
         {
             spriteBatch.Begin();
 
-            spriteBatch.Draw(_flower, new Vector2(FlowerX, FlowerY), null, _color, 0, new Vector2(1, 1), new Vector2(1f,1f), SpriteEffects.None, 0);
+            spriteBatch.Draw(_flowerSprite, new Vector2(_flowerX, _flowerY), null, _color, 0, new Vector2(1, 1), new Vector2(1f,1f), SpriteEffects.None, 0);
             spriteBatch.End();
         }
     }
