@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Assignment_5_mono
 {
-    internal class Flower : Master_Class
+    internal class Flower :Caterpillar
     {
 
         private int FlowerX, FlowerY;

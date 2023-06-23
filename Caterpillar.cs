@@ -16,7 +16,7 @@ namespace Assignment_5_mono
         moving,
         transform
     }
-    internal class Caterpillar: Master_Class
+    internal class Caterpillar: Master
     {
         //flip sprite when required
         private SpriteEffects _flipLeft;
@@ -27,7 +27,6 @@ namespace Assignment_5_mono
         protected Texture2D _sprite;
 
         //position x, y and movement speed
-        protected int _positionX, _positionY, _movementSpeed, _killtime;
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
