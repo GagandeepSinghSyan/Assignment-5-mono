@@ -9,6 +9,12 @@ namespace Assignment_5_mono
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        //caterpillar variable
+        private Caterpillar _caterpillar;
+
+        //caterpillar tecture
+        private Texture2D _caterpillarSprite;
+
         public Game1()
         {
             Texture2D[] Flowers = new Texture2D[4];
@@ -19,7 +25,6 @@ namespace Assignment_5_mono
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             
             base.Initialize();
         }
@@ -27,8 +32,10 @@ namespace Assignment_5_mono
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            
+            _caterpillarSprite = Content.Load<Texture2D>("Caterpillar");
 
-            // TODO: use this.Content to load your game content here
+            _caterpillar = new Caterpillar(50, 50, 5, _caterpillarSprite);
         }
 
         protected override void Update(GameTime gameTime)
@@ -36,7 +43,7 @@ namespace Assignment_5_mono
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            _caterpillar.Update();
 
             base.Update(gameTime);
         }
@@ -45,7 +52,7 @@ namespace Assignment_5_mono
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _caterpillar.Draw(_spriteBatch);
 
             base.Draw(gameTime);
         }

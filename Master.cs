@@ -15,11 +15,5 @@ namespace Assignment_5_mono
 
         //position x, y and movement speed
         protected int _positionX, _positionY, _movementSpeed, _killtime;
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
-            spriteBatch.Draw(_sprite, new Vector2(_positionX, _positionY), Color.White);
-            spriteBatch.End();
-        }
     }
 }

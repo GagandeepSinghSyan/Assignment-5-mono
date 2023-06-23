@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Assignment_5_mono
 {
-    internal class Flower :Caterpillar
+    internal class Flower : Master
     {
 
         private int FlowerX, FlowerY;
@@ -40,8 +40,6 @@ namespace Assignment_5_mono
                 _color = new Color(rng.Next(0, 256), rng.Next(0, 256), rng.Next(0, 256));
                 _timer = 60;
             }
-
-
         }
         public int GetKillTime() { return _killtime; }
         public bool Died() { return _killtime <= 0; }

@@ -47,12 +47,12 @@ namespace Assignment_5_mono
         {
             if(Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                _positionY += 5;
+                _positionY -= 5;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                _positionY -= 5;
+                _positionY += 5;
             }
             
             if(Keyboard.GetState().IsKeyDown(Keys.D))
@@ -65,6 +65,5 @@ namespace Assignment_5_mono
                 _positionX -= 5;
             }
         }
-        
     }
 }
