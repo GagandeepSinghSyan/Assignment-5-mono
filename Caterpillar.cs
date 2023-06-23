@@ -83,6 +83,7 @@ namespace Assignment_5_mono
             }
         }
 
+        public Rectangle getRectangle() { return new Rectangle((int)_positionX, (int)_positionY, _sprite.Width, _sprite.Height); }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
@@ -90,15 +91,23 @@ namespace Assignment_5_mono
             spriteBatch.End();
         }
 
-        public int GetPostionX(int position) 
+        public int GetPostionX() 
         {
-         position= _positionX; 
-         return position;
+         return _positionX;
         }
-        public int GetPostionY(int position) 
+        public int GetPostionY() 
+        {
+            return _positionX;
+        }
+        public int SetPostionX(int position)
+        {
+            position=  _positionX;
+            return _positionX;
+        }
+        public int SetPostionY(int position)
         {
             position = _positionY;
-            return position;
+            return _positionY;
         }
     }
 }

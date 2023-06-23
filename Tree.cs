@@ -12,23 +12,32 @@ namespace Assignment_5_mono
     internal class Tree : Master
     {
 
+       
+
         private Texture2D _tree; 
-        public Tree(int x, int y, int killtime, Texture2D tree)
+        public Tree(int x, int y, Texture2D tree)
         {
             _positionX = x;
             _positionY = y;
-            _killtime = killtime;
             _tree = tree;
         }
 
 
-        public void Update()
-        {
-            _killtime--; // decreases kill time
-
-        }
+        
         public int GetKillTime() { return _killtime; }
         public bool Died() { return _killtime <= 0; }
+
+        public void Collision(Tree tree, Caterpillar caterpillar) 
+        {
+            if (tree.getRectangle().Intersects(caterpillar.getRectangle())) ;
+
+            caterpillar.SetPostionX(0);
+            caterpillar.SetPostionY(0);
+
+        }
+
+
+        public Rectangle getRectangle() { return new Rectangle((int)_positionX, (int)_positionY, _tree.Width, _tree.Height); }
 
         public void Draw(SpriteBatch spriteBatch)
         {
