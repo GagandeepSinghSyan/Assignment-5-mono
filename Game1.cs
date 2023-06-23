@@ -60,7 +60,21 @@ namespace Assignment_5_mono
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            _caterpillar.Update();
+            //handle different screens
+            base.Update(gameTime);
+            switch (_state)
+            {
+                case GameState.TitleScreen:
+                    UpdateTitleScreen(gameTime);
+                    break;
+                case GameState.MainScreen:
+                    UpdateMainScreen(gameTime);
+                    break;
+                case GameState.EndScreen:
+                    UpdateEndScreen(gameTime);
+                    break;
+            }
+
             _caterpillar.GetPostionX(CatterpillarX);
             _caterpillar.GetPostionY(CatterpillarY);
             
@@ -68,46 +82,31 @@ namespace Assignment_5_mono
             base.Update(gameTime);
         }
 
-        void UpdateTitleScreen(GameTime deltatime)
+        void UpdateTitleScreen(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.NumPad0))
             {
                 _state = GameState.TitleScreen;
             }
         }
-        void UpdateMainScreen(GameTime deltatime)
+        void UpdateMainScreen(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.NumPad1))
             {
-                _state = GameState.TitleScreen;
+                _state = GameState.MainScreen;
             }
         }
 
-            void UpdateEndScreen(GameTime deltatime)
+            void UpdateEndScreen(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.NumPad2))
             {
-                _state = GameState.TitleScreen;
+                _state = GameState.EndScreen;
             }
         }
 
         protected override void Draw(GameTime gameTime)
         {
-
-            //handle different screens
-            base.Update(gameTime);
-            switch (_state)
-            {
-                case GameState.TitleScreen:
-                    UpdateTitleScreen(deltatime);
-                    break;
-                case GameState.MainScreen:
-                    UpdateMainScreen(deltatime);
-                    break;
-                case GameState.EndScreen:
-                    UpdateEndScreen(deltatime);
-                    break;
-            }
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _caterpillar.Draw(_spriteBatch);
@@ -115,17 +114,17 @@ namespace Assignment_5_mono
             base.Draw(gameTime);
         }
 
-        void DrawTitleScreen(GameTime deltatime)
+        void DrawTitleScreen(GameTime gameTime)
         {
 
         }
 
-        void DrawMainScreen(GameTime deltatime)
+        void DrawMainScreen(GameTime gameTime)
         {
 
         }
 
-        void DrawEndScfreen(GameTime deltatime)
+        void DrawEndScfreen(GameTime gameTime)
         {
 
         }
