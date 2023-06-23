@@ -107,11 +107,7 @@ namespace Assignment_5_mono
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            _caterpillar.Draw(_spriteBatch);
-
-            base.Draw(gameTime);
+            
         }
 
         void DrawTitleScreen(GameTime gameTime)
@@ -121,7 +117,11 @@ namespace Assignment_5_mono
 
         void DrawMainScreen(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            _caterpillar.Draw(_spriteBatch);
+
+            base.Draw(gameTime);
         }
 
         void DrawEndScfreen(GameTime gameTime)
