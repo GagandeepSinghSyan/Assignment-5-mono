@@ -68,6 +68,8 @@ namespace Assignment_5_mono
 
             //random object
             _randomNumber = new Random();
+
+            
             
             base.Initialize();
         }
@@ -86,7 +88,10 @@ namespace Assignment_5_mono
             _treeTexture = Content.Load<Texture2D>("tree");
 
             //initialize values for trees
-            _treeTexture = new Tree(_randomNumber.Next(100,1820), _randomNumber.Next(100,980),_treeTexture)
+            _tree = new Tree(_randomNumber.Next(200, 1720), _randomNumber.Next(200, 880), _treeTexture);
+
+            _tree.getRectangle();
+            _caterpillar.getRectangle();
         }
 
         protected override void Update(GameTime gameTime)
@@ -110,9 +115,8 @@ namespace Assignment_5_mono
             }
 
             _caterpillar.Update();
-            _caterpillar.GetPostionX(catterpillarX);
-            _caterpillar.GetPostionY(catterpillarY);
 
+            _tree.Collision(_tree, _caterpillar);
 
 
             if (Keyboard.GetState().IsKeyDown(Keys.L))
@@ -154,7 +158,7 @@ namespace Assignment_5_mono
             GraphicsDevice.Clear(Color.Green);
 
             _caterpillar.Draw(_spriteBatch);
-            _treeTexture.Draw(_spriteBatch);
+            _tree.Draw(_spriteBatch);
 
             base.Draw(gameTime);
         }

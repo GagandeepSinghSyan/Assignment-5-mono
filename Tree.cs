@@ -36,13 +36,12 @@ namespace Assignment_5_mono
 
         }
 
-
         public Rectangle getRectangle() { return new Rectangle((int)_positionX, (int)_positionY, _tree.Width, _tree.Height); }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(_tree, new Vector2(_positionX, _positionY), null, Color.White, 0, new Vector2(1, 1), new Vector2(1f, 1f), SpriteEffects.None, 0);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
+            spriteBatch.Draw(_tree, new Vector2(_positionX, _positionY), null, Color.White, 0, new Vector2(1, 1), new Vector2(4f, 4f), SpriteEffects.None, 0);
             spriteBatch.End();
         }
     }
