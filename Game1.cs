@@ -11,6 +11,7 @@ namespace Assignment_5_mono
 
         public Game1()
         {
+            Texture2D[] Flowers = new Texture2D[]
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -19,7 +20,7 @@ namespace Assignment_5_mono
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            
             base.Initialize();
         }
 

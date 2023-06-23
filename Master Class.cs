@@ -14,7 +14,7 @@ namespace Assignment_5_mono
         protected Texture2D _sprite;
 
         //position x, y and movement speed
-        protected int _positionX, _positionY, _movementSpeed;
+        protected int _positionX, _positionY, _movementSpeed, _killtime;
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
