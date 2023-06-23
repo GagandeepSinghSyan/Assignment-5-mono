@@ -75,19 +75,21 @@ namespace Assignment_5_mono
                     break;
             }
 
+            _caterpillar.Update();
             _caterpillar.GetPostionX(CatterpillarX);
             _caterpillar.GetPostionY(CatterpillarY);
-            
+
+
+            if (Keyboard.GetState().IsKeyDown(Keys.L))
+            {
+                _state = GameState.TitleScreen;
+            }
 
             base.Update(gameTime);
         }
 
         void UpdateTitleScreen(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.NumPad0))
-            {
-                _state = GameState.TitleScreen;
-            }
         }
         void UpdateMainScreen(GameTime gameTime)
         {
@@ -107,21 +109,21 @@ namespace Assignment_5_mono
 
         protected override void Draw(GameTime gameTime)
         {
-            
-        }
-
-        void DrawTitleScreen(GameTime gameTime)
-        {
-
-        }
-
-        void DrawMainScreen(GameTime gameTime)
-        {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _caterpillar.Draw(_spriteBatch);
 
             base.Draw(gameTime);
+        }
+
+        void DrawTitleScreen(GameTime gameTime)
+        {
+            
+        }
+
+        void DrawMainScreen(GameTime gameTime)
+        {
+           
         }
 
         void DrawEndScfreen(GameTime gameTime)
