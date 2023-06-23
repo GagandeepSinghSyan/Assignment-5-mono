@@ -29,11 +29,11 @@ namespace Assignment_5_mono
 
         public void Collision(Tree tree, Caterpillar caterpillar) 
         {
-            if (tree.getRectangle().Intersects(caterpillar.getRectangle())) ;
-
-            caterpillar.SetPostionX(0);
-            caterpillar.SetPostionY(0);
-
+            if (tree.getRectangle().Intersects(caterpillar.getRectangle()))
+            {
+                caterpillar.SetPostionX(0);
+                caterpillar.SetPostionY(0);
+            }
         }
 
         public Rectangle getRectangle() { return new Rectangle((int)_positionX, (int)_positionY, _tree.Width, _tree.Height); }

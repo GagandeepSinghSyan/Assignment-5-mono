@@ -25,23 +25,18 @@ namespace Assignment_5_mono
 
         //caterpillar variable
         private Caterpillar _caterpillar;
-        private int catterpillarX = 0, catterpillarY = 0;
 
         //caterpillar texture
         private Texture2D _caterpillarSprite;
 
-        //tree variable
-        private Tree _tree;
-        
+        //tree variables
+        private Tree _tree, _tree2, _tree3, _tree4, _tree5, _tree6;
 
         //tree texture
         private Texture2D _treeTexture;
 
-        //tree list declaration
-        private List<Tree> _treeList;
-
         //random number
-        private Random _randomNumber= new Random();
+        private Random _randomNumber= new Random(), _randomNumber2 = new Random(), _randomNumber3 = new Random(), _randomNumber4 = new Random(), _randomNumber5 = new Random(), _randomNumber6 = new Random();
 
         //declaration of screen state
         GameState _state;
@@ -63,35 +58,43 @@ namespace Assignment_5_mono
 
         protected override void Initialize()
         {
-            //list of tree intitialized
-            _treeList = new List<Tree>();
-
-            //random object
-            _randomNumber = new Random();
-
-            
-            
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
+            //random object
+            _randomNumber = new Random();
+
             //load caterpilar texture
             _caterpillarSprite = Content.Load<Texture2D>("Caterpillar");
 
-            //initialize values for caterpillar
-            _caterpillar = new Caterpillar(catterpillarX, catterpillarY, 5, _caterpillarSprite);
+            //constructor for caterpillar
+            _caterpillar = new Caterpillar(_randomNumber.Next(50, 1820), _randomNumber.Next(800, 1000), 5, _caterpillarSprite);
 
-            //initialize values for tree
+            //load tree texture
             _treeTexture = Content.Load<Texture2D>("tree");
 
-            //initialize values for trees
-            _tree = new Tree(_randomNumber.Next(200, 1720), _randomNumber.Next(200, 880), _treeTexture);
+            //constructor for tree1
+            _tree = new Tree(_randomNumber.Next(50, 1720), _randomNumber.Next(50, 380), _treeTexture);
 
-            _tree.getRectangle();
-            _caterpillar.getRectangle();
+            //constructor for tree2
+            _tree2 = new Tree(_randomNumber2.Next(50, 1720), _randomNumber2.Next(50, 380), _treeTexture);
+
+            //constructor for tree1
+            _tree3 = new Tree(_randomNumber.Next(50, 1720), _randomNumber.Next(50, 380), _treeTexture);
+
+            //constructor for tree2
+            _tree4 = new Tree(_randomNumber2.Next(50, 1720), _randomNumber2.Next(50, 380), _treeTexture);
+
+            //constructor for tree1
+            _tree5 = new Tree(_randomNumber.Next(50, 1720), _randomNumber.Next(50, 380), _treeTexture);
+
+            //constructor for tree2
+            _tree6 = new Tree(_randomNumber2.Next(50, 1720), _randomNumber2.Next(50, 380), _treeTexture);
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -99,26 +102,9 @@ namespace Assignment_5_mono
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            //handle different screens
-            base.Update(gameTime);
-            switch (_state)
-            {
-                case GameState.TitleScreen:
-                    UpdateTitleScreen(gameTime);
-                    break;
-                case GameState.MainScreen:
-                    UpdateMainScreen(gameTime);
-                    break;
-                case GameState.EndScreen:
-                    UpdateEndScreen(gameTime);
-                    break;
-            }
-
             _caterpillar.Update();
 
-            _tree.Collision(_tree, _caterpillar);
-
-
+            //for enum input
             if (Keyboard.GetState().IsKeyDown(Keys.L))
             {
                 _state = GameState.TitleScreen;
@@ -140,42 +126,31 @@ namespace Assignment_5_mono
             base.Update(gameTime);
         }
 
-        void UpdateTitleScreen(GameTime gameTime)
-        {
-            
-        }
-        void UpdateMainScreen(GameTime gameTime)
-        {
-            
-        }
-        void UpdateEndScreen(GameTime gameTime)
-        {
-            
-        }
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Green);
 
-            _caterpillar.Draw(_spriteBatch);
+            //1st tree drew
             _tree.Draw(_spriteBatch);
 
+            //2nd tree drew
+            _tree2.Draw(_spriteBatch);
+
+            //1st tree drew
+            _tree3.Draw(_spriteBatch);
+
+            //2nd tree drew
+            _tree4.Draw(_spriteBatch);
+
+            //1st tree drew
+            _tree5.Draw(_spriteBatch);
+
+            //2nd tree drew
+            _tree6.Draw(_spriteBatch);
+
+            //draw caterpillar
+            _caterpillar.Draw(_spriteBatch);
             base.Draw(gameTime);
-        }
-
-        void DrawTitleScreen(GameTime gameTime)
-        {
-            
-        }
-
-        void DrawMainScreen(GameTime gameTime)
-        {
-           
-        }
-
-        void DrawEndScfreen(GameTime gameTime)
-        {
-
         }
     }
 }

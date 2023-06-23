@@ -93,7 +93,7 @@ namespace Assignment_5_mono
 
         public int GetPostionX() 
         {
-         return _positionX;
+            return _positionX;
         }
         public int GetPostionY() 
         {
@@ -101,7 +101,7 @@ namespace Assignment_5_mono
         }
         public int SetPostionX(int position)
         {
-            position=  _positionX;
+            position =  _positionX;
             return _positionX;
         }
         public int SetPostionY(int position)
