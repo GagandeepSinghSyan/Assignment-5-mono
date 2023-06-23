@@ -98,14 +98,12 @@ namespace Assignment_5_mono
             {
                 _state = GameState.EndScreen;
                 Console.WriteLine("Changed to EndScren");
-
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.N))
             {
                 _state = GameState.MainScreen;
                 Console.WriteLine("Changed to MainScreen");
-
             }
 
             base.Update(gameTime);
