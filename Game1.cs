@@ -25,10 +25,23 @@ namespace Assignment_5_mono
 
         //caterpillar variable
         private Caterpillar _caterpillar;
-        private int CatterpillarX= 0, CatterpillarY= 0;
+        private int catterpillarX = 0, catterpillarY = 0;
 
-        //caterpillar tecture
+        //caterpillar texture
         private Texture2D _caterpillarSprite;
+
+        //tree variable
+        private Tree _tree;
+        
+
+        //tree texture
+        private Texture2D _treeTexture;
+
+        //tree list declaration
+        private List<Tree> _treeList;
+
+        //random number
+        private Random _randomNumber= new Random();
 
         //declaration of screen state
         GameState _state;
@@ -50,6 +63,11 @@ namespace Assignment_5_mono
 
         protected override void Initialize()
         {
+            //list of tree intitialized
+            _treeList = new List<Tree>();
+
+            //random object
+            _randomNumber = new Random();
             
             base.Initialize();
         }
@@ -60,8 +78,15 @@ namespace Assignment_5_mono
             
             //load caterpilar texture
             _caterpillarSprite = Content.Load<Texture2D>("Caterpillar");
+
             //initialize values for caterpillar
-            _caterpillar = new Caterpillar(CatterpillarX, CatterpillarY, 5, _caterpillarSprite);
+            _caterpillar = new Caterpillar(catterpillarX, catterpillarY, 5, _caterpillarSprite);
+
+            //initialize values for tree
+            _treeTexture = Content.Load<Texture2D>("tree");
+
+            //initialize values for trees
+            _treeTexture = new Tree(_randomNumber.Next(100,1820), _randomNumber.Next(100,980),_treeTexture)
         }
 
         protected override void Update(GameTime gameTime)
@@ -85,8 +110,10 @@ namespace Assignment_5_mono
             }
 
             _caterpillar.Update();
-            _caterpillar.GetPostionX(CatterpillarX);
-            _caterpillar.GetPostionY(CatterpillarY);
+            _caterpillar.GetPostionX(catterpillarX);
+            _caterpillar.GetPostionY(catterpillarY);
+
+
 
             if (Keyboard.GetState().IsKeyDown(Keys.L))
             {
@@ -127,6 +154,7 @@ namespace Assignment_5_mono
             GraphicsDevice.Clear(Color.Green);
 
             _caterpillar.Draw(_spriteBatch);
+            _treeTexture.Draw(_spriteBatch);
 
             base.Draw(gameTime);
         }

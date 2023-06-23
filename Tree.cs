@@ -33,7 +33,6 @@ namespace Assignment_5_mono
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-
             spriteBatch.Draw(_tree, new Vector2(_positionX, _positionY), null, Color.White, 0, new Vector2(1, 1), new Vector2(1f, 1f), SpriteEffects.None, 0);
             spriteBatch.End();
         }
