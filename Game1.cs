@@ -78,18 +78,17 @@ namespace Assignment_5_mono
             _caterpillar.Update();
             _caterpillar.GetPostionX(CatterpillarX);
             _caterpillar.GetPostionY(CatterpillarY);
-
-
-            if (Keyboard.GetState().IsKeyDown(Keys.L))
-            {
-                _state = GameState.TitleScreen;
-            }
+            
 
             base.Update(gameTime);
         }
 
         void UpdateTitleScreen(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.L))
+            {
+                _state = GameState.TitleScreen;
+            }
         }
         void UpdateMainScreen(GameTime gameTime)
         {
