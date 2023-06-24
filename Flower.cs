@@ -13,12 +13,10 @@ namespace Assignment_5_mono
     internal class Flower : Master
     {
 
-        private int FlowerX, FlowerY;
         private int _killtime;
         private Random _rng;
         private float _scale;
         private Color _color;
-        private Texture2D _tree;
         private Random rng;
         private int _timer = 60;
 
@@ -26,11 +24,11 @@ namespace Assignment_5_mono
 
         public Flower(int x, int y, int killtime, Texture2D tree)
         {
-            FlowerX = x;
-            FlowerY = y;
+            _positionX = x;
+            _positionY = y;
             _killtime = killtime;
             _scale = 0.1f;
-            _tree = tree;
+            _sprite = tree;
             rng = new Random();
             _color = new Color(rng.Next(0, 256), rng.Next(0, 256), rng.Next(0, 256));
         }
@@ -38,9 +36,14 @@ namespace Assignment_5_mono
 
         public void Update()
         {
-            _killtime--; // decreases kill time
-            _timer--;  // timer for color change
-            if (_timer == 0) //code for color change
+            // decreases kill time
+            _killtime--;
+
+            // timer for color change
+            _timer--;
+
+            //code for color change
+            if (_timer == 0) 
             {
                 _timer = 60;
             }
@@ -51,20 +54,20 @@ namespace Assignment_5_mono
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(_tree, new Vector2(FlowerX, FlowerY), null, Color.White, 0, new Vector2(1, 1), new Vector2(0.3f, 0.3f), SpriteEffects.None, 0);
+            spriteBatch.Draw(_sprite, new Vector2(_positionX, _positionY), null, Color.White, 0, new Vector2(1, 1), new Vector2(_sprite.Width, _sprite.Height), SpriteEffects.None, 0);
             spriteBatch.End();
         }
 
-         public int GetPositionX() { return  _positionX; }
-        public int GetPositionY() { return _positionY; }
- /*
-        void Collison(Butterfly butterfly, Flower flower)
+         public int GetPositionX() { return _positionX; }
+         public int GetPositionY() { return _positionY; }
+
+        void Collision()
         {
-            if (butterfly.getRectangle().Intersects(flower.getRectangle()))
+            if (_butterfly.getRectangle().Intersects(_newFlower.getRectangle()))
             {
-                ;
+                //destroy specfic flower - to do
             }
         }
- */
+        
     }
 }

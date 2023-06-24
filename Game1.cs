@@ -40,9 +40,9 @@ namespace Assignment_5_mono
         //tree texture
         private Texture2D _treeTexture;
         private SpriteFont GameFont;
-
+        private Flower _newFlower;
         //
-        private Texture2D _flowersprite;
+        private Texture2D _flowerSprite;
         private bool spacebarDown = false;
 
         //butterfly texture
@@ -50,9 +50,6 @@ namespace Assignment_5_mono
 
         //random number
         private Random _randomNumber = new Random();
-
-        //declaration of screen state
-        GameState _state;
 
         public Game1()
         {
@@ -81,9 +78,10 @@ namespace Assignment_5_mono
             //random object
             _randomNumber = new Random();
 
-            //
+            //tree list
             _trees = new List<Tree>();
 
+            //flower list
             _flowers = new List<Flower>();
 
             //load caterpilar texture
@@ -96,7 +94,7 @@ namespace Assignment_5_mono
             _treeTexture = Content.Load<Texture2D>("tree");
 
 
-            _flowersprite = Content.Load<Texture2D>("Blue");
+            _flowerSprite = Content.Load<Texture2D>("Blue");
 
             for (int i = 0; i <= 10; i++)
             {
@@ -119,6 +117,8 @@ namespace Assignment_5_mono
                 Exit();
 
             _butterfly.Update();
+
+            //removing flowers - backup here
             for (int i = 0; i < _flowers.Count; i++)
             {
                 _flowers[i].Update();
@@ -128,43 +128,16 @@ namespace Assignment_5_mono
                 }
             }
 
-            //for enum input
-            if (Keyboard.GetState().IsKeyDown(Keys.L))
-            {
-                _state = GameState.TitleScreen;
-                Console.WriteLine("Changed to TitleScreen");
-            }
-
-            if (Keyboard.GetState().IsKeyDown(Keys.M))
-            {
-                _state = GameState.EndScreen;
-                Console.WriteLine("Changed to EndScren");
-            }
-
-            if (Keyboard.GetState().IsKeyDown(Keys.N))
-            {
-                _state = GameState.MainScreen;
-                Console.WriteLine("Changed to MainScreen");
-            }
-
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && !spacebarDown)
             {
                 spacebarDown = true;
-                Flower _newFlower = new Flower(_randomNumber.Next(0, 1920), _randomNumber.Next(0, 1080), 2400, _flowersprite);
+                _newFlower = new Flower(_randomNumber.Next(0, 1920), _randomNumber.Next(0, 1080), 2400, _flowerSprite);
                 _flowers.Add(_newFlower);
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Space))
             {
                 spacebarDown = false;
             }
-            for (int i = _flowers.Count - 1; i >= 0; i--)
-            {
-                Flower flower = _flowers[i];
-
-            }
-            
-
-
 
             base.Update(gameTime);
         }
@@ -173,10 +146,6 @@ namespace Assignment_5_mono
         {
 
             GraphicsDevice.Clear(Color.Green);
-           
-
-            //1st tree drew
-            //_tree.Draw(_spriteBatch);
 
             foreach (Tree tree in _trees)
             {
@@ -190,7 +159,6 @@ namespace Assignment_5_mono
 
             //draw butterfly
             _butterfly.Draw(_spriteBatch);
-
 
             _spriteBatch.Begin();
             _spriteBatch.DrawString(GameFont, "Press Space to Add Flower and W A S D is movement for butterfly.", new Vector2(_textX, _textY), Color.White);
