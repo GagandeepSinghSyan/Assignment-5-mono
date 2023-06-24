@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 
@@ -20,23 +21,35 @@ namespace Assignment_5_mono
         private int _windowWidth = 1920;
         private int _windowHeight = 1080;
 
+        private int _treeX, _treeY;
+
+        private int _textY = 50, _textX = 600;
+
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        //caterpillar variable
-        private Caterpillar _caterpillar;
+        //butterfly variable
+        private Butterfly _butterfly;
 
-        //caterpillar texture
-        private Texture2D _caterpillarSprite;
+        private List<Flower> _flowers;
 
         //tree variables
-        private Tree _tree, _tree2, _tree3, _tree4, _tree5, _tree6;
+        private List<Tree> _trees;
 
         //tree texture
         private Texture2D _treeTexture;
+        private SpriteFont GameFont;
+
+        //
+        private Texture2D _flowersprite;
+        private bool spacebarDown = false;
+
+        //butterfly texture
+        private Texture2D _butterflySprite;
 
         //random number
-        private Random _randomNumber= new Random(), _randomNumber2 = new Random(), _randomNumber3 = new Random(), _randomNumber4 = new Random(), _randomNumber5 = new Random(), _randomNumber6 = new Random();
+        private Random _randomNumber = new Random();
 
         //declaration of screen state
         GameState _state;
@@ -68,41 +81,52 @@ namespace Assignment_5_mono
             //random object
             _randomNumber = new Random();
 
-            //load caterpilar texture
-            _caterpillarSprite = Content.Load<Texture2D>("Caterpillar");
+            //
+            _trees = new List<Tree>();
 
-            //constructor for caterpillar
-            _caterpillar = new Caterpillar(_randomNumber.Next(50, 1820), _randomNumber.Next(800, 1000), 5, _caterpillarSprite);
+            _flowers = new List<Flower>();
+
+            //load caterpilar texture
+            _butterflySprite = Content.Load<Texture2D>("butterfly");
+
+            //constructor for butterfly
+            _butterfly = new Butterfly(_randomNumber.Next(50, 1820), _randomNumber.Next(800, 1000), 5, _butterflySprite);
 
             //load tree texture
             _treeTexture = Content.Load<Texture2D>("tree");
 
-            //constructor for tree1
-            _tree = new Tree(_randomNumber.Next(50, 1720), _randomNumber.Next(50, 380), _treeTexture);
 
-            //constructor for tree2
-            _tree2 = new Tree(_randomNumber2.Next(50, 1720), _randomNumber2.Next(50, 380), _treeTexture);
+            _flowersprite = Content.Load<Texture2D>("Blue");
 
-            //constructor for tree1
-            _tree3 = new Tree(_randomNumber.Next(50, 1720), _randomNumber.Next(50, 380), _treeTexture);
+            for (int i = 0; i <= 10; i++)
+            {
+                //constructor trees
+                Tree new_tree = new Tree(_treeX, _treeY, _treeTexture);
+                _trees.Add(new_tree);
 
-            //constructor for tree2
-            _tree4 = new Tree(_randomNumber2.Next(50, 1720), _randomNumber2.Next(50, 380), _treeTexture);
+                _treeX += 200;
+                _treeY = _randomNumber.Next(100,700 );
+               
+            }
 
-            //constructor for tree1
-            _tree5 = new Tree(_randomNumber.Next(50, 1720), _randomNumber.Next(50, 380), _treeTexture);
-
-            //constructor for tree2
-            _tree6 = new Tree(_randomNumber2.Next(50, 1720), _randomNumber2.Next(50, 380), _treeTexture);
+           GameFont = Content.Load<SpriteFont>("GameFont");
 
         }
-
+                
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            _caterpillar.Update();
+            _butterfly.Update();
+            for (int i = 0; i < _flowers.Count; i++)
+            {
+                _flowers[i].Update();
+                if (_flowers[i].GetKillTime() < 0)
+                {
+                    _flowers.RemoveAt(i);
+                }
+            }
 
             //for enum input
             if (Keyboard.GetState().IsKeyDown(Keys.L))
@@ -123,33 +147,54 @@ namespace Assignment_5_mono
                 Console.WriteLine("Changed to MainScreen");
             }
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && !spacebarDown)
+            {
+                spacebarDown = true;
+                Flower _newFlower = new Flower(_randomNumber.Next(0, 1920), _randomNumber.Next(0, 1080), 2400, _flowersprite);
+                _flowers.Add(_newFlower);
+            }
+            if (Keyboard.GetState().IsKeyUp(Keys.Space))
+            {
+                spacebarDown = false;
+            }
+            for (int i = _flowers.Count - 1; i >= 0; i--)
+            {
+                Flower flower = _flowers[i];
+
+            }
+            
+
+
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
+
             GraphicsDevice.Clear(Color.Green);
+           
 
             //1st tree drew
-            _tree.Draw(_spriteBatch);
+            //_tree.Draw(_spriteBatch);
 
-            //2nd tree drew
-            _tree2.Draw(_spriteBatch);
+            foreach (Tree tree in _trees)
+            {
+                tree.Draw(_spriteBatch);
+            }
 
-            //1st tree drew
-            _tree3.Draw(_spriteBatch);
+            foreach (Flower flower in _flowers)
+            {
+                flower.Draw(_spriteBatch);
+            }
 
-            //2nd tree drew
-            _tree4.Draw(_spriteBatch);
+            //draw butterfly
+            _butterfly.Draw(_spriteBatch);
 
-            //1st tree drew
-            _tree5.Draw(_spriteBatch);
 
-            //2nd tree drew
-            _tree6.Draw(_spriteBatch);
-
-            //draw caterpillar
-            _caterpillar.Draw(_spriteBatch);
+            _spriteBatch.Begin();
+            _spriteBatch.DrawString(GameFont, "Press Space to Add Flower and W A S D is movement for butterfly.", new Vector2(_textX, _textY), Color.White);
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }

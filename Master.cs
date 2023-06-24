@@ -11,9 +11,12 @@ namespace Assignment_5_mono
 {
     internal class Master
     {
+        //
         protected Texture2D _sprite;
 
         //position x, y and movement speed
-        protected int _positionX, _positionY, _movementSpeed, _killtime;
+        protected int _positionX, _positionY, _movementSpeed, _endtime;
+
+
     }
 }

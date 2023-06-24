@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
@@ -12,19 +13,24 @@ namespace Assignment_5_mono
     internal class Flower : Master
     {
 
-        private int _flowerX, _flowerY, _flowerKilltime;
+        private int FlowerX, FlowerY;
+        private int _killtime;
+        private Random _rng;
+        private float _scale;
         private Color _color;
-        private Texture2D _flowerSprite;
+        private Texture2D _tree;
         private Random rng;
         private int _timer = 60;
 
 
-        public Flower(int flowerX, int flowerY, int flowerKilltime, Texture2D flowerSprite)
+
+        public Flower(int x, int y, int killtime, Texture2D tree)
         {
-            _flowerX = flowerX;
-            _flowerY = flowerY;
-            _flowerKilltime = flowerKilltime;
-            _flowerSprite = flowerSprite;
+            FlowerX = x;
+            FlowerY = y;
+            _killtime = killtime;
+            _scale = 0.1f;
+            _tree = tree;
             rng = new Random();
             _color = new Color(rng.Next(0, 256), rng.Next(0, 256), rng.Next(0, 256));
         }
@@ -36,7 +42,6 @@ namespace Assignment_5_mono
             _timer--;  // timer for color change
             if (_timer == 0) //code for color change
             {
-                _color = new Color(rng.Next(0, 256), rng.Next(0, 256), rng.Next(0, 256));
                 _timer = 60;
             }
         }
@@ -46,9 +51,20 @@ namespace Assignment_5_mono
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-
-            spriteBatch.Draw(_flowerSprite, new Vector2(_flowerX, _flowerY), null, _color, 0, new Vector2(1, 1), new Vector2(1f,1f), SpriteEffects.None, 0);
+            spriteBatch.Draw(_tree, new Vector2(FlowerX, FlowerY), null, Color.White, 0, new Vector2(1, 1), new Vector2(0.3f, 0.3f), SpriteEffects.None, 0);
             spriteBatch.End();
         }
+
+         public int GetPositionX() { return  _positionX; }
+        public int GetPositionY() { return _positionY; }
+ /*
+        void Collison(Butterfly butterfly, Flower flower)
+        {
+            if (butterfly.getRectangle().Intersects(flower.getRectangle()))
+            {
+                ;
+            }
+        }
+ */
     }
 }
