@@ -23,7 +23,6 @@ namespace Assignment_5_mono
             _tree = tree;
         }
 
-
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
