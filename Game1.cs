@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿//GME1011_A05 by Gagandeep Singh Syan A00279789 and Ebrahim A00274169
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -8,41 +10,40 @@ using System.Diagnostics.Metrics;
 
 namespace Assignment_5_mono
 {
-    enum GameState
-    {
-        TitleScreen,
-        MainScreen,
-        EndScreen,
-    }
-
     public class Game1 : Game
     {
         //resolution for window
-        private int _windowWidth = 1920;
-        private int _windowHeight = 1080;
+        private int _windowWidth = 1920, _windowHeight = 1080;
 
-        private int _treeX, _treeY;
+        //initial tree tree position
+        private int _treeX = 500, _treeY = 50;
 
-        private int _textY = 50, _textX = 600;
-
-
+        //default declartions
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        //butterfly variable
+        //declaration for butterfly
         private Butterfly _butterfly;
 
+        //flower list
         private List<Flower> _flowers;
 
-        //tree variables
+        //tree list
         private List<Tree> _trees;
 
         //tree texture
         private Texture2D _treeTexture;
-        private SpriteFont GameFont;
+
+        //declaration font variable
+        private SpriteFont _gameFont;
+
+        //declaration for flower
         private Flower _newFlower;
-        //
+
+        //declaration flower texture
         private Texture2D _flowerSprite;
+
+        //check button press 
         private bool spacebarDown = false;
 
         //butterfly texture
@@ -106,8 +107,8 @@ namespace Assignment_5_mono
                 _treeY = _randomNumber.Next(100,700 );
                
             }
-
-           GameFont = Content.Load<SpriteFont>("GameFont");
+            //game font load
+           _gameFont = Content.Load<SpriteFont>("GameFont");
 
         }
                 
@@ -118,7 +119,7 @@ namespace Assignment_5_mono
 
             _butterfly.Update();
 
-            //removing flowers - backup here
+            //remove flower
             for (int i = 0; i < _flowers.Count; i++)
             {
                 _flowers[i].Update();
@@ -127,11 +128,11 @@ namespace Assignment_5_mono
                     _flowers.RemoveAt(i);
                 }
             }
-
+            //spawning flower
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && !spacebarDown)
             {
                 spacebarDown = true;
-                _newFlower = new Flower(_randomNumber.Next(0, 1920), _randomNumber.Next(0, 1080), 2400, _flowerSprite);
+                _newFlower = new Flower(_randomNumber.Next(0, 1920), _randomNumber.Next(0, 1080), 120, _flowerSprite);
                 _flowers.Add(_newFlower);
             }
             if (Keyboard.GetState().IsKeyUp(Keys.Space))
@@ -146,12 +147,12 @@ namespace Assignment_5_mono
         {
 
             GraphicsDevice.Clear(Color.Green);
-
+            //draw tree
             foreach (Tree tree in _trees)
             {
                 tree.Draw(_spriteBatch);
             }
-
+            //draw flower
             foreach (Flower flower in _flowers)
             {
                 flower.Draw(_spriteBatch);
@@ -160,8 +161,9 @@ namespace Assignment_5_mono
             //draw butterfly
             _butterfly.Draw(_spriteBatch);
 
+            //draw text
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(GameFont, "Press Space to Add Flower and W A S D is movement for butterfly.", new Vector2(_textX, _textY), Color.White);
+            _spriteBatch.DrawString(_gameFont, "Press Space to Add Flower and W A S D is movement for butterfly.", new Vector2(_windowWidth/2 - 400, 50), Color.White);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

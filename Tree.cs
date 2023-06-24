@@ -11,7 +11,11 @@ namespace Assignment_5_mono
 {
     internal class Tree : Master
     {
+
+        //sprite attribute
         private Texture2D _tree; 
+
+        //constructor
         public Tree(int x, int y, Texture2D tree)
         {
             _positionX = x;
@@ -19,8 +23,6 @@ namespace Assignment_5_mono
             _tree = tree;
         }
 
-        public int GetKillTime() { return _endtime; }
-        public bool Died() { return _endtime <= 0; }
 
         public void Draw(SpriteBatch spriteBatch)
         {

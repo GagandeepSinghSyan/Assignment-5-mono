@@ -12,7 +12,7 @@ namespace Assignment_5_mono
 {
     internal class Flower : Master
     {
-
+        //flower attributes
         private int _killtime;
         private Random _rng;
         private float _scale;
@@ -21,7 +21,7 @@ namespace Assignment_5_mono
         private int _timer = 60;
 
 
-
+        //constructor
         public Flower(int x, int y, int killtime, Texture2D tree)
         {
             _positionX = x;
@@ -33,7 +33,7 @@ namespace Assignment_5_mono
             _color = new Color(rng.Next(0, 256), rng.Next(0, 256), rng.Next(0, 256));
         }
 
-
+        //timer for killing the flower and and countdown for the said killing
         public void Update()
         {
             // decreases kill time
@@ -48,26 +48,19 @@ namespace Assignment_5_mono
                 _timer = 60;
             }
         }
-        public int GetKillTime() { return _killtime; }
-        public bool Died() { return _killtime <= 0; }
+        public int GetKillTime() { return _killtime; } //getters
+        public bool Died() { return _killtime <= 0; }//died getter
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(_sprite, new Vector2(_positionX, _positionY), null, Color.White, 0, new Vector2(1, 1), new Vector2(_sprite.Width, _sprite.Height), SpriteEffects.None, 0);
+            spriteBatch.Draw(_sprite, new Vector2(_positionX, _positionY), null, Color.White, 0, new Vector2(1, 1), new Vector2(0.3f, 0.3f), SpriteEffects.None, 0);
             spriteBatch.End();
         }
 
+        //getters
          public int GetPositionX() { return _positionX; }
          public int GetPositionY() { return _positionY; }
-
-        void Collision()
-        {
-            if (_butterfly.getRectangle().Intersects(_newFlower.getRectangle()))
-            {
-                //destroy specfic flower - to do
-            }
-        }
         
     }
 }
